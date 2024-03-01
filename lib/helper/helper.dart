@@ -40,7 +40,8 @@ class Helper {
   static const Color secondaryColor5LightTheme = Color(0xFFF8F8F8);
 
   // Links and Texts
-  static String apiUrl = "";
+  static String apiUrl =
+      "https://my-json-server.typicode.com/woelabs/money_manager_api";
   static String imagesUrl = "assets/images/";
   static String exitwarning = "Appuyer encore une fois pour quitter";
   static const String lorem =

@@ -27,7 +27,7 @@ class HomeHeader extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "New Worth",
+                  "Net Worth",
                   style: Theme.of(context)
                       .textTheme
                       .bodyLarge!
