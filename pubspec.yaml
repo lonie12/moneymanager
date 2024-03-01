@@ -1,0 +1,42 @@
+name: moneymanager
+description: A new Flutter project.
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.1.5 <4.0.0'
+
+dependencies:
+  fluttertoast: ^8.2.4
+  syncfusion_flutter_charts: ^24.2.8
+  flutter_svg: ^2.0.10+1
+  flutter_native_splash: any
+  flutter_localizations:
+    sdk: flutter
+  carbon_icons: ^0.0.1+2
+  get: ^4.6.6
+  intl: any
+  flutter:
+    sdk: flutter
+  shared_preferences: ^2.2.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  change_app_package_name: ^1.1.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter:
+  uses-material-design: true
+  
+  assets:
+    - assets/images/
+
+  fonts:
+    - family: Nunito
+      fonts:
+        - asset: assets/fonts/Nunito-Regular.ttf
+        - asset: assets/fonts/Nunito-Bold.ttf
+        - asset: assets/fonts/Nunito-Light.ttf
+        - asset: assets/fonts/Nunito-Medium.ttf
