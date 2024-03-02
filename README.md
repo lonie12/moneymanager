@@ -9,7 +9,10 @@ Ce dépôt contient du code source pour une application mobile développée avec
 Avant d'exécuter l'application, assurez-vous d'avoir les éléments suivants installés sur votre système :
 
 - Flutter SDK : [Télécharger et installer Flutter](https://flutter.dev/docs/get-started/install)
+    Version de flutter: Flutter 3.19.2 • channel stable • https://github.com/flutter/flutter.git
+    Version de dart: Dart SDK version: 3.3.0 (stable) (Tue Feb 13 10:25:19 2024 +0000) on "windows_x64"
 - Un éditeur de code (par exemple, VSCode, Android Studio, IntelliJ IDEA)
+
 
 ## Instructions d'installation
 

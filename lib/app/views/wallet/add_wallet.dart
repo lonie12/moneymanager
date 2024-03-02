@@ -1,17 +1,23 @@
 import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:moneymanager/app/controllers/wallet.dart';
 import 'package:moneymanager/helper/helper.dart';
+import 'package:moneymanager/helper/localstorage.dart';
+import 'package:moneymanager/helper/utils.dart';
 import 'package:moneymanager/widgets/appbar.dart';
 import 'package:moneymanager/widgets/button.dart';
 import 'package:moneymanager/widgets/input.dart';
 import 'package:moneymanager/widgets/wallet.dart';
 
 class AddWallet extends StatelessWidget {
-  const AddWallet({super.key});
+  AddWallet({super.key});
+
+  final controller = Get.put(WalletController());
 
   @override
   Widget build(context) {
+    print(LocalStorage.getWallets());
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -59,7 +65,22 @@ class AddWallet extends StatelessWidget {
                       ),
                       borderRadius: BorderRadius.circular(6),
                     ),
-                    child: WalletItem(icon: Helper.walletIcons[0]),
+                    child: Obx(
+                      () => WalletItem(
+                        icon: appIconWithValue(controller.accounticon.value!),
+                        aid: controller.accountid.value,
+                        aname: controller.accountname.value,
+                        abalance: utilsThousandSeparator(
+                          double.parse(controller.accountbalance.value),
+                          appCurrencyWithValue(
+                            controller.accountcurrency.value,
+                          ),
+                        ),
+                        acurrency: appCurrencyWithValue(
+                          controller.accountcurrency.value,
+                        ),
+                      ),
+                    ),
                   )
                 ],
               ),
@@ -67,95 +88,132 @@ class AddWallet extends StatelessWidget {
             Expanded(
               child: SingleChildScrollView(
                 padding: const EdgeInsets.only(right: 12, left: 12),
-                child: Column(
-                  children: [
-                    const SizedBox(height: 20),
-                    Input(
-                      hintText: "Account name",
-                      title: "",
-                      controller: TextEditingController(),
-                    ),
-                    const SizedBox(height: 15),
-                    Input(
-                      hintText: "Account number or ID",
-                      title: "",
-                      controller: TextEditingController(),
-                    ),
-                    const SizedBox(height: 15),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Input(
-                            hintText: "Account name",
-                            title: "",
-                            controller: TextEditingController(),
-                          ),
-                        ),
-                        const SizedBox(width: 15),
-                        Expanded(
-                          child: Input(
-                            hintText: "Account name",
-                            title: "",
-                            controller: TextEditingController(),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 15),
-                    Textarea(
-                      hintText: "Description",
-                      title: "",
-                      controller: TextEditingController(),
-                    ),
-                    const SizedBox(height: 15),
-                    Input(
-                      hintText: "Account name",
-                      title: "",
-                      controller: TextEditingController(),
-                    ),
-                    const SizedBox(height: 15),
-                    Input(
-                      hintText: "Account name",
-                      title: "",
-                      controller: TextEditingController(),
-                    ),
-                    const SizedBox(height: 20),
-                    Container(
-                      width: Get.width,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          width: 0.7,
-                          color: Colors.grey.shade300,
-                        ),
-                        borderRadius: BorderRadius.circular(10),
+                child: Obx(
+                  () => Column(
+                    children: [
+                      const SizedBox(height: 20),
+                      Input(
+                        hintText: "Account name",
+                        title: "",
+                        onChange: (value) =>
+                            controller.accountname.value = value,
                       ),
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 2,
-                        horizontal: 12,
+                      const SizedBox(height: 15),
+                      Input(
+                        hintText: "Account number or ID",
+                        title: "",
+                        onChange: (value) => controller.accountid.value = value,
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      const SizedBox(height: 15),
+                      Input(
+                        hintText: "Account balance",
+                        title: "",
+                        onChange: (value) {
+                          controller.accountbalance.value = value;
+                        },
+                        type: TextInputType.number,
+                      ),
+                      const SizedBox(height: 15),
+                      Row(
                         children: [
-                          Text(
-                            "Add balance to net worth",
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyLarge!
-                                .copyWith(
-                                    fontSize: 15, fontWeight: FontWeight.w500),
+                          Expanded(
+                            child: Selectable(
+                              values: Helper.appIcons,
+                              title: "Icon",
+                              type: "icon",
+                              value: controller.accounticon.value!,
+                              onChange: (value) {
+                                controller.accounticon.value = value;
+                              },
+                            ),
                           ),
-                          Switch(value: true, onChanged: (value) {})
+                          const SizedBox(width: 15),
+                          Expanded(
+                            child: Selectable(
+                              values: Helper.appColors,
+                              title: "Color",
+                              type: "colors",
+                              value: controller.accountcolor.value!,
+                              onChange: (value) {
+                                controller.accountcolor.value = value;
+                              },
+                            ),
+                          ),
                         ],
                       ),
-                    ),
-                    const SizedBox(height: 25),
-                  ],
+                      const SizedBox(height: 15),
+                      Textarea(
+                        hintText: "Description",
+                        title: "",
+                        onChange: () {},
+                      ),
+                      const SizedBox(height: 15),
+                      Selectable(
+                        values: Helper.accountTypes,
+                        title: "Account type",
+                        type: "text",
+                        value: controller.accounttype.value,
+                        onChange: (value) {
+                          controller.accounttype.value = value;
+                        },
+                      ),
+                      const SizedBox(height: 15),
+                      Selectable(
+                        values: Helper.appCurrencies,
+                        title: "Account currency",
+                        type: "text",
+                        value: controller.accountcurrency.value,
+                        onChange: (value) {
+                          controller.accountcurrency.value = value;
+                        },
+                      ),
+                      const SizedBox(height: 20),
+                      Container(
+                        width: Get.width,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            width: 0.7,
+                            color: Colors.grey.shade300,
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 2,
+                          horizontal: 12,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Add balance to net worth",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge!
+                                  .copyWith(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500),
+                            ),
+                            Switch(
+                              value: controller.addtonetworth.value,
+                              onChanged: (value) {
+                                controller.addtonetworth.value = value;
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 25),
+                    ],
+                  ),
                 ),
               ),
             ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-              child: const Button(title: "Create"),
+              child: Button(
+                title: "Create",
+                onClick: () => controller.addWallet(),
+              ),
             )
           ],
         ),

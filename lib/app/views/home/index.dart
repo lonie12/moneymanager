@@ -38,7 +38,7 @@ class Home extends StatelessWidget {
               title: "Lonie",
               actions: InkWell(
                 onTap: () => Get.to(
-                  () => const AddWallet(),
+                  () => AddWallet(),
                   transition: Transition.downToUp,
                   duration: const Duration(milliseconds: 500),
                 ),

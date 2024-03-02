@@ -59,7 +59,13 @@ class AddExpenseCategory extends StatelessWidget {
                       ),
                       borderRadius: BorderRadius.circular(6),
                     ),
-                    child: WalletItem(icon: Helper.walletIcons[0]),
+                    child: WalletItem(
+                      aname: "UBA Bank",
+                      aid: "501234567890",
+                      icon: Helper.walletIcons[0],
+                      abalance: "5,045,300",
+                      acurrency: "XOF",
+                    ),
                   )
                 ],
               ),
@@ -73,13 +79,13 @@ class AddExpenseCategory extends StatelessWidget {
                     Input(
                       hintText: "Account name",
                       title: "",
-                      controller: TextEditingController(),
+                      onChange: (){},
                     ),
                     const SizedBox(height: 15),
                     Input(
                       hintText: "Account number or ID",
                       title: "",
-                      controller: TextEditingController(),
+                      onChange: (){},
                     ),
                     const SizedBox(height: 15),
                     Row(
@@ -88,7 +94,8 @@ class AddExpenseCategory extends StatelessWidget {
                           child: Input(
                             hintText: "Account name",
                             title: "",
-                            controller: TextEditingController(),
+    
+                            onChange: (){},
                           ),
                         ),
                         const SizedBox(width: 15),
@@ -96,7 +103,8 @@ class AddExpenseCategory extends StatelessWidget {
                           child: Input(
                             hintText: "Account name",
                             title: "",
-                            controller: TextEditingController(),
+    
+                            onChange: (){},
                           ),
                         ),
                       ],
@@ -105,19 +113,19 @@ class AddExpenseCategory extends StatelessWidget {
                     Textarea(
                       hintText: "Description",
                       title: "",
-                      controller: TextEditingController(),
+                      onChange: (){},
                     ),
                     const SizedBox(height: 15),
                     Input(
                       hintText: "Account name",
                       title: "",
-                      controller: TextEditingController(),
+                      onChange: (){},
                     ),
                     const SizedBox(height: 15),
                     Input(
                       hintText: "Account name",
                       title: "",
-                      controller: TextEditingController(),
+                      onChange: (){},
                     ),
                     const SizedBox(height: 20),
                     Container(

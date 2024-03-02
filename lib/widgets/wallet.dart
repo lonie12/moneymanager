@@ -2,9 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class WalletItem extends StatelessWidget {
-  const WalletItem({super.key, required this.icon});
+  const WalletItem({
+    super.key,
+    required this.icon,
+    required this.aid,
+    required this.aname,
+    required this.acurrency,
+    required this.abalance,
+  });
 
   final String icon;
+  final String aid; // Account Id
+  final String aname; // Account name
+  final String acurrency; // Account currency
+  final String abalance; // Account currency
 
   @override
   Widget build(context) {
@@ -37,7 +48,7 @@ class WalletItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "UBA Bank",
+                      aname,
                       style: Theme.of(context)
                           .textTheme
                           .bodyLarge!
@@ -45,7 +56,7 @@ class WalletItem extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                     Text(
-                      "501234567890",
+                      aid,
                       style: Theme.of(context)
                           .textTheme
                           .bodyLarge!
@@ -63,7 +74,7 @@ class WalletItem extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
           text: TextSpan(
-            text: "5,045,300",
+            text: abalance,
             style: Theme.of(context)
                 .textTheme
                 .bodyLarge!
@@ -71,7 +82,7 @@ class WalletItem extends StatelessWidget {
             children: [
               const TextSpan(text: " "),
               TextSpan(
-                text: 'XOF',
+                text: acurrency,
                 style: Theme.of(context)
                     .textTheme
                     .bodyLarge!

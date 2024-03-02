@@ -22,7 +22,11 @@ class HomeWallets extends StatelessWidget {
               padding:
                   index != 0 ? const EdgeInsets.only(top: 20) : EdgeInsets.zero,
               child: WalletItem(
+                aname: "UBA Bank",
+                aid: "501234567890",
                 icon: Helper.walletIcons[index],
+                abalance: "5,045,300",
+                acurrency: "XOF",
               ),
             );
           },

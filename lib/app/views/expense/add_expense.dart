@@ -98,7 +98,13 @@ class AddExpense extends StatelessWidget {
                               ),
                               borderRadius: BorderRadius.circular(6),
                             ),
-                            child: WalletItem(icon: Helper.walletIcons[0]),
+                            child: WalletItem(
+                              aname: "UBA Bank",
+                              aid: "501234567890",
+                              icon: Helper.walletIcons[0],
+                              abalance: "5,045,300",
+                              acurrency: "XOF",
+                            ),
                           ),
                           const SizedBox(height: 20),
                           Text(
@@ -115,7 +121,7 @@ class AddExpense extends StatelessWidget {
                           Input(
                             hintText: "Account number or ID",
                             title: "",
-                            controller: TextEditingController(),
+                            onChange: () {},
                           ),
                         ],
                       ),

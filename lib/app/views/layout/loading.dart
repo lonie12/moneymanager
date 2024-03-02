@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:moneymanager/helper/helper.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:moneymanager/helper/localstorage.dart';
 import 'package:moneymanager/helper/routes.dart';
 
 class Loader extends StatefulWidget {
@@ -71,13 +70,8 @@ class LoadingState extends State<Loading> {
       call: () async {
         FlutterNativeSplash.remove();
 
-        // if (LocalStorage.firstUse) {
-        //   return Get.offAllNamed(Routes.ONBOARD);
-        // }
-
-        if (!LocalStorage.logged) {
-          return Get.offAllNamed(Routes.WRAPPER);
-        }
+        //
+        if (true) {}
 
         return Get.offAllNamed(Routes.WRAPPER);
       },

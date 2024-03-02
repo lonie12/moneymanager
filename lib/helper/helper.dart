@@ -76,11 +76,69 @@ class Helper {
 
   static List walletIcons = [bank, wallet1, wallet];
 
-  // static Map walletIcons = {
-  //   "bk": bank,
-  //   "wt": wallet,
-  //   "w1": wallet1,
-  // };
+  static List<Map<String, String>> appIcons = [
+    {
+      "key": bank,
+      "value": "bank",
+    },
+    {
+      "key": wallet,
+      "value": "Wallet",
+    },
+    {
+      "key": wallet1,
+      "value": "wallet1",
+    },
+  ];
+
+  static List<Map<String, String>> appColors = [
+    {
+      "key": "F44336",
+      "value": "red",
+    },
+    {
+      "key": "4CAF50",
+      "value": "green",
+    },
+    {
+      "key": "2196F3",
+      "value": "blue",
+    },
+    {
+      "key": "FFC107",
+      "value": "yellow",
+    },
+    {
+      "key": "9C27B0",
+      "value": "violet",
+    },
+  ];
+
+  static List<Map<String, String>> accountTypes = [
+    {
+      "key": "Regular",
+      "value": "regular",
+    },
+    {
+      "key": "Closed",
+      "value": "closed",
+    },
+  ];
+
+  static List<Map<String, String>> appCurrencies = [
+    {
+      "key": "XOF",
+      "value": "xof",
+    },
+    {
+      "key": "USD",
+      "value": "usd",
+    },
+    {
+      "key": "EUR",
+      "value": "eur",
+    },
+  ];
 
   static Codec<String, String> stringToBase64 = utf8.fuse(base64);
 }
