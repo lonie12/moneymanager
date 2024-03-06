@@ -56,9 +56,31 @@ Si vous utilisez un éditeur de code comme VSCode ou Android Studio, vous pouvez
 
 Les contributions sont les bienvenues ! N'hésitez pas à ouvrir une issue ou à soumettre une pull request pour suggérer des améliorations ou des correctifs. -->
 
+# Captures d'écrans de l'application
+
+## Ecran d'accueil et Ajouter un portefeuille
+
+![alt text](https://res.cloudinary.com/dovatakyj/image/upload/v1709723641/vjzseljhlssh9hwsrsog.png)
+
+
+## Dépenses et catégories
+
+![alt text](https://res.cloudinary.com/dovatakyj/image/upload/v1709723640/ydoy7euxnvn6o2sfjpoj.png)
+
+![alt text](https://res.cloudinary.com/dovatakyj/image/upload/v1709723640/dzkl3w4pjyuttjxxc8ya.png)
+
+
+## Ajouter une dépense
+![alt text](https://res.cloudinary.com/dovatakyj/image/upload/v1709723640/vy5eeuudb14rw57nlw2p.png)
+
+
+## Paramètres de l'application
+![alt text](https://res.cloudinary.com/dovatakyj/image/upload/v1709724122/wazqxnmgxporjismwxg7.jpg)
+
 ## Support
 
 Si vous rencontrez des problèmes ou si vous avez des questions, veuillez ouvrir une issue dans ce dépôt et nous vous aiderons dès que possible.
+
 
 ---
 
