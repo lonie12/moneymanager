@@ -79,7 +79,7 @@ Les contributions sont les bienvenues ! N'hésitez pas à ouvrir une issue ou à
 
 ## Télécharger l'apk ici 👇
 
-https://file.io/eENAku2liquh
+https://drive.google.com/file/d/1HPpO0TOt__YzRTIhDvOv1YBdR6knntUU/view?usp=sharing
 
 ## Support
 
