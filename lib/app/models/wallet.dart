@@ -20,8 +20,8 @@ class Wallet {
       id: json["id"],
       value: json["value"],
       name: json["name"],
-      balance: json["balance"],
-      currency: json["currency"],
+      balance: double.parse(json["balance"].toString()),
+      currency: json["currency"].toLowerCase(),
       description: json["description"],
     );
   }

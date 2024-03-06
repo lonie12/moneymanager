@@ -1,14 +1,16 @@
-import 'package:carbon_icons/carbon_icons.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:moneymanager/app/controllers/wallet.dart';
-import 'package:moneymanager/helper/helper.dart';
-import 'package:moneymanager/helper/localstorage.dart';
+import 'package:flutter/material.dart';
+import 'package:carbon_icons/carbon_icons.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:moneymanager/helper/utils.dart';
+import 'package:moneymanager/widgets/wallet.dart';
 import 'package:moneymanager/widgets/appbar.dart';
 import 'package:moneymanager/widgets/button.dart';
 import 'package:moneymanager/widgets/input.dart';
-import 'package:moneymanager/widgets/wallet.dart';
+import 'package:moneymanager/widgets/textarea.dart';
+import 'package:moneymanager/helper/constants.dart';
+import 'package:moneymanager/widgets/selectable.dart';
+import 'package:moneymanager/app/controllers/wallet.dart';
 
 class AddWallet extends StatelessWidget {
   AddWallet({super.key});
@@ -17,7 +19,6 @@ class AddWallet extends StatelessWidget {
 
   @override
   Widget build(context) {
-    print(LocalStorage.getWallets());
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -70,15 +71,8 @@ class AddWallet extends StatelessWidget {
                         icon: appIconWithValue(controller.accounticon.value!),
                         aid: controller.accountid.value,
                         aname: controller.accountname.value,
-                        abalance: utilsThousandSeparator(
-                          double.parse(controller.accountbalance.value),
-                          appCurrencyWithValue(
-                            controller.accountcurrency.value,
-                          ),
-                        ),
-                        acurrency: appCurrencyWithValue(
-                          controller.accountcurrency.value,
-                        ),
+                        abalance: controller.accountbalance.value,
+                        acurrency: controller.accountcurrency.value.toString(),
                       ),
                     ),
                   )
@@ -109,16 +103,22 @@ class AddWallet extends StatelessWidget {
                         hintText: "Account balance",
                         title: "",
                         onChange: (value) {
-                          controller.accountbalance.value = value;
+                          if (isNumeric(controller.accountbalance.value)) {
+                            controller.accountbalance.value = value;
+                          } else {
+                            controller.accountbalance.value = "0.0";
+                            Fluttertoast.showToast(
+                              msg: "Montant saisie invalide",
+                            );
+                          }
                         },
-                        type: TextInputType.number,
                       ),
                       const SizedBox(height: 15),
                       Row(
                         children: [
                           Expanded(
                             child: Selectable(
-                              values: Helper.appIcons,
+                              values: appIcons,
                               title: "Icon",
                               type: "icon",
                               value: controller.accounticon.value!,
@@ -130,7 +130,7 @@ class AddWallet extends StatelessWidget {
                           const SizedBox(width: 15),
                           Expanded(
                             child: Selectable(
-                              values: Helper.appColors,
+                              values: appColors,
                               title: "Color",
                               type: "colors",
                               value: controller.accountcolor.value!,
@@ -149,7 +149,7 @@ class AddWallet extends StatelessWidget {
                       ),
                       const SizedBox(height: 15),
                       Selectable(
-                        values: Helper.accountTypes,
+                        values: accountTypes,
                         title: "Account type",
                         type: "text",
                         value: controller.accounttype.value,
@@ -159,10 +159,10 @@ class AddWallet extends StatelessWidget {
                       ),
                       const SizedBox(height: 15),
                       Selectable(
-                        values: Helper.appCurrencies,
+                        values: appCurrencies,
                         title: "Account currency",
                         type: "text",
-                        value: controller.accountcurrency.value,
+                        value: controller.accountcurrency.value.toString(),
                         onChange: (value) {
                           controller.accountcurrency.value = value;
                         },

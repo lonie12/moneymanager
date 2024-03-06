@@ -1,5 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
+// App routes
 class Routes {
   static const String LOADING = '/';
   static const String WRAPPER = '/wrapper';

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:moneymanager/helper/utils.dart';
 
 class WalletItem extends StatelessWidget {
   const WalletItem({
@@ -70,26 +71,15 @@ class WalletItem extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 30),
-        RichText(
-          overflow: TextOverflow.ellipsis,
-          textAlign: TextAlign.center,
-          text: TextSpan(
-            text: abalance,
-            style: Theme.of(context)
-                .textTheme
-                .bodyLarge!
-                .copyWith(fontSize: 16, fontWeight: FontWeight.bold),
-            children: [
-              const TextSpan(text: " "),
-              TextSpan(
-                text: acurrency,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyLarge!
-                    .copyWith(fontSize: 11, fontWeight: FontWeight.w500),
-              )
-            ],
+        Text(
+          utilsThousandSeparator(
+            double.tryParse(abalance) ?? 0.0,
+            appCurrencyWithValue(acurrency),
           ),
+          style: Theme.of(context)
+              .textTheme
+              .bodyLarge!
+              .copyWith(fontSize: 15, fontWeight: FontWeight.bold),
         )
       ],
     );

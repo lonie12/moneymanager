@@ -93,15 +93,15 @@ class DashboardChart extends StatelessWidget {
           ),
           const SizedBox(height: 6),
           SizedBox(
-            height: 170,
+            height: 180,
             child: SfCartesianChart(
               series: <CartesianSeries>[
                 BarSeries<ChartData, double>(
-                  width: 0.5,
+                  width: 0.4,
                   dataSource: chartData,
                   xValueMapper: (ChartData data, _) => data.x,
                   yValueMapper: (ChartData data, _) => data.y,
-                  borderRadius: BorderRadius.circular(4),
+                  borderRadius: BorderRadius.circular(2.5),
                 )
               ],
             ),

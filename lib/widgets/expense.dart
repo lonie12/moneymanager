@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:moneymanager/app/models/expense.dart';
 import 'package:moneymanager/helper/helper.dart';
+import 'package:moneymanager/helper/utils.dart';
 
 class ExpenseItem extends StatelessWidget {
-  const ExpenseItem({super.key});
+  const ExpenseItem({
+    super.key,
+    required this.expense,
+  });
+
+  final Expense expense;
 
   @override
   Widget build(context) {
@@ -42,7 +49,7 @@ class ExpenseItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Achat de pure water",
+                        expense.description,
                         style: Theme.of(context)
                             .textTheme
                             .bodyLarge!
@@ -50,7 +57,13 @@ class ExpenseItem extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                       Text(
-                        "8 septembre 2023",
+                        dateFormat(
+                          DateTime.fromMillisecondsSinceEpoch(
+                            int.parse(expense.date),
+                          ),
+                          "complet",
+                          location: "fr",
+                        ),
                         style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                             fontSize: 12, color: Colors.grey.shade500),
                         overflow: TextOverflow.ellipsis,
@@ -66,7 +79,7 @@ class ExpenseItem extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.center,
             text: TextSpan(
-              text: "2500",
+              text: expense.amount.toString(),
               style: Theme.of(context)
                   .textTheme
                   .bodyLarge!

@@ -70,9 +70,10 @@ class LoadingState extends State<Loading> {
       call: () async {
         FlutterNativeSplash.remove();
 
-        //
-        if (true) {}
+        // Conditions d'entrées
+        // if (true) {}
 
+        // 
         return Get.offAllNamed(Routes.WRAPPER);
       },
     );

@@ -35,7 +35,7 @@ class Home extends StatelessWidget {
                   ),
                 ),
               ),
-              title: "Lonie",
+              title: "Mahugnon",
               actions: InkWell(
                 onTap: () => Get.to(
                   () => AddWallet(),

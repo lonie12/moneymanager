@@ -9,6 +9,8 @@ import 'package:moneymanager/helper/theme.dart';
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
+  // Entry (Initialization & configurations)
   await App.initializeApp();
   runApp(const MainApp());
 }
@@ -40,7 +42,7 @@ class MainApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: const [Locale('en', ''), Locale('fr', '')],
-      transitionDuration: const Duration(milliseconds: 0),
+      transitionDuration: const Duration(milliseconds: 1000),
     );
   }
 }

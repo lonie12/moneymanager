@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:moneymanager/helper/helper.dart';
 
-class Input extends StatelessWidget {
-  Input({
+class Textarea extends StatelessWidget {
+  Textarea({
     super.key,
     required this.hintText,
     required this.title,
@@ -15,14 +15,14 @@ class Input extends StatelessWidget {
     this.pTap,
     this.prefixIsWidget = false,
     this.prefixWidget,
-    this.maxlines = 1,
+    this.maxlines = 4,
     this.type,
     required this.onChange,
   });
 
   final outline = OutlineInputBorder(
     borderSide: BorderSide(color: Colors.grey.shade300, width: 0.7),
-    borderRadius: BorderRadius.circular(8),
+    borderRadius: BorderRadius.circular(6),
   );
 
   final String hintText;
@@ -45,34 +45,17 @@ class Input extends StatelessWidget {
   Widget build(context) {
     return TextField(
       onChanged: (value) => onChange(value) ?? () {},
-      obscureText: visibility ?? false,
-      // controller: controller,
       maxLines: maxlines,
       keyboardType: type ?? TextInputType.text,
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-        // prefixIcon:
-        suffixIcon: isPassword == true
-            ? InkWell(
-                onTap: () => pTap!(),
-                child: Icon(
-                  visibility == false ? Icons.visibility_off : Icons.visibility,
-                ),
-              )
-            : Icon(
-                suffixicon,
-                size: 20,
-                color: Helper.greyTextColor,
-              ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
         filled: true,
-        fillColor: color ?? Colors.white,
-        // hoverColor: Helper.greyTextColor,
-        hintText: hintText,
+        contentPadding: const EdgeInsets.all(12),
         border: outline,
         enabledBorder: outline,
-
         focusedBorder: outline,
+        fillColor: Colors.white,
+        hintText: hintText,
       ),
       style: Theme.of(context)
           .textTheme
@@ -81,5 +64,3 @@ class Input extends StatelessWidget {
     );
   }
 }
-
-

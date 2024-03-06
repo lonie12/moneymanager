@@ -7,6 +7,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:moneymanager/app/controllers/home.dart';
 import 'package:moneymanager/app/views/expense/expenses.dart';
 import 'package:moneymanager/app/views/home/index.dart';
+import 'package:moneymanager/app/views/setting/index.dart';
+import 'package:moneymanager/app/views/statistic/index.dart';
 import 'package:moneymanager/helper/helper.dart';
 
 class AppWrapper extends StatelessWidget {
@@ -31,8 +33,8 @@ class AppWrapper extends StatelessWidget {
                     children: const [
                       Home(),
                       Expenses(),
-                      Home(),
-                      Home(),
+                      Statistic(),
+                      Setting(),
                     ],
                   ),
                 )
