@@ -19,7 +19,7 @@ Avant d'exécuter l'application, assurez-vous d'avoir les éléments suivants in
 1. Clonez ce dépôt sur votre machine locale :
 
     ```
-    git clone https://github.com/NomUtilisateur/NomDépôt.git
+    git clone https://github.com/lonie12/moneymanager
     ```
 
 2. Accédez au répertoire du projet :
@@ -76,6 +76,10 @@ Les contributions sont les bienvenues ! N'hésitez pas à ouvrir une issue ou à
 
 ## Paramètres de l'application
 ![alt text](https://res.cloudinary.com/dovatakyj/image/upload/v1709724122/wazqxnmgxporjismwxg7.jpg)
+
+## Télécharger l'apk ici 👇
+
+https://drive.usercontent.google.com/download?id=1HPpO0TOt__YzRTIhDvOv1YBdR6knntUU&export=download&authuser=2
 
 ## Support
 
