@@ -1,8 +1,9 @@
 import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:moneymanager/app/controllers/expense.dart';
+import 'package:moneymanager/app/controllers/expense_provider.dart';
 import 'package:moneymanager/app/views/expense/add_epense_category.dart';
 import 'package:moneymanager/app/views/expense/add_expense.dart';
 import 'package:moneymanager/app/views/home/simmer.dart';
@@ -10,29 +11,13 @@ import 'package:moneymanager/helper/helper.dart';
 import 'package:moneymanager/widgets/appbar.dart';
 import 'package:moneymanager/widgets/expense.dart';
 
-class Expenses extends StatefulWidget {
+class Expenses extends ConsumerWidget {
   const Expenses({super.key});
 
   @override
-  State<Expenses> createState() => _ExpensesState();
-}
-
-class _ExpensesState extends State<Expenses> {
-  final controller = Get.put(ExpenseController());
-
-  @override
-  void initState() {
-    onInit();
-    super.initState();
-  }
-
-  void onInit() async {
-    debugPrint("====");
-    await controller.allExpense();
-  }
-
-  @override
-  Widget build(context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final expenses = ref.watch(allExpenseProvider);
+    // final counter = ref.watch(counterProvider);
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -60,23 +45,42 @@ class _ExpensesState extends State<Expenses> {
             Expanded(
               child: SingleChildScrollView(
                 padding: const EdgeInsets.symmetric(horizontal: 12),
-                child: Obx(
-                  () => Column(
-                    children: controller.loading.value
-                        ? List.generate(3, (index) {
-                            return const ItemShimmer();
-                          })
-                        : List.generate(
-                            controller.expenses.value!.length,
-                            (index) {
-                              var expense = controller.expenses.value![index];
-                              return ExpenseItem(expense: expense);
-                            },
-                          ),
+                child: Column(
+                  children: expenses.when(
+                    data: (data) {
+                      return List.generate(
+                        data!.length,
+                        (index) {
+                          var expense = data[index];
+                          return ExpenseItem(expense: expense);
+                        },
+                      );
+                    },
+                    error: (e, st) {
+                      print(e);
+                      return List.generate(3, (index) {
+                        return const ItemShimmer();
+                      });
+                    },
+                    loading: () => List.generate(3, (index) {
+                      return const ItemShimmer();
+                    }),
                   ),
                 ),
               ),
-            )
+            ),
+            // Text("$counter"),
+            // InkWell(
+            //   onTap: () => ref.read(counterProvider.notifier).increment(),
+            //   child: Container(
+            //     padding: const EdgeInsets.all(12),
+            //     decoration: BoxDecoration(
+            //       borderRadius: BorderRadius.circular(24),
+            //       color: Colors.grey.shade400,
+            //     ),
+            //     child: const Icon(CarbonIcons.add),
+            //   ),
+            // )
           ],
         ),
       ),

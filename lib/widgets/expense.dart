@@ -59,7 +59,7 @@ class ExpenseItem extends StatelessWidget {
                       Text(
                         dateFormat(
                           DateTime.fromMillisecondsSinceEpoch(
-                            int.parse(expense.date),
+                            int.parse(expense.date.toString()),
                           ),
                           "complet",
                           location: "fr",

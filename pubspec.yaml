@@ -22,6 +22,11 @@ dependencies:
   http: ^1.2.1
   shimmer: ^3.0.0
   fancy_shimmer_image: ^2.0.3
+  flutter_riverpod: ^2.5.1
+  riverpod_annotation: ^2.3.5
+  formz: ^0.7.0
+  freezed_annotation: ^2.4.1
+  json_annotation: ^4.8.1
 
 dev_dependencies:
   flutter_test:
@@ -29,6 +34,12 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   change_app_package_name: ^1.1.0
   flutter_launcher_icons: ^0.13.1
+  riverpod_generator: ^2.4.0
+  build_runner: ^2.4.8
+  custom_lint: ^0.6.2
+  riverpod_lint: ^2.3.10
+  freezed: ^2.4.7
+  json_serializable: ^6.7.1
 
 
 flutter_native_splash:

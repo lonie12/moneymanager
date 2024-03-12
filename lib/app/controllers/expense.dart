@@ -105,7 +105,7 @@ class ExpenseController extends GetxController {
       // Créer le modèle wallet
       var expense = Expense(
         id: Random().nextInt(100),
-        date: DateTime.now().millisecondsSinceEpoch.toString(),
+        date: DateTime.now().millisecondsSinceEpoch,
         category: category.value!.id,
         wallet: wallet.value!.id,
         description: expenseDescription.value,

@@ -12,7 +12,7 @@ class LocalStorage {
   static init() async {
     // Initialisation
     storage = await SharedPreferences.getInstance();
-    storage.clear();
+    // storage.clear();
   }
 
   // Local data

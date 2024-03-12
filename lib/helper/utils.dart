@@ -38,7 +38,7 @@ String? appColorWithValue(String value) {
   return color != null && color.isNotEmpty ? color : null;
 }
 
-// Balance format 
+// Balance format
 utilsThousandSeparator(value, currency) {
   return NumberFormat.currency(
     locale: "fr-FR",
@@ -47,7 +47,7 @@ utilsThousandSeparator(value, currency) {
   ).format(value);
 }
 
-// inputs Validation 
+// inputs Validation
 bool stringFormValidation(List<String> data) {
   var result = true;
   for (var i = 0; i < data.length; i++) {
@@ -59,7 +59,7 @@ bool stringFormValidation(List<String> data) {
   return result;
 }
 
-// Inputs validation 
+// Inputs validation
 bool doubleFormValidation(List<double> data) {
   var result = true;
   for (var i = 0; i < data.length; i++) {
@@ -71,7 +71,7 @@ bool doubleFormValidation(List<double> data) {
   return result;
 }
 
-// 
+//
 bool isNumeric(String s) {
   if (s.isEmpty) {
     return false;
@@ -79,7 +79,7 @@ bool isNumeric(String s) {
   return double.tryParse(s) != null;
 }
 
-// Date format 
+// Date format
 String dateFormat(DateTime date, String type, {location = "fr"}) {
   var result = "";
   if (type == "mois") {
@@ -141,3 +141,64 @@ var settingMenu = [
     'new': false,
   },
 ];
+
+abstract class StringValidator {
+  bool isValid(String value);
+}
+
+class RegexValidator implements StringValidator {
+  RegexValidator({required this.regexSource});
+
+  final String regexSource;
+
+  @override
+  bool isValid(String value) {
+    try {
+      final RegExp regex = RegExp(regexSource);
+      final Iterable<Match> matches = regex.allMatches(value);
+
+      for (final match in matches) {
+        if (match.start == 0 && match.end == value.length) {
+          return true;
+        }
+      }
+
+      return false;
+    } catch (e) {
+      assert(false, e.toString());
+      return true;
+    }
+  }
+}
+
+class EmailSubmitRegexValidator extends RegexValidator {
+  EmailSubmitRegexValidator()
+      : super(
+          regexSource: r'(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)',
+        );
+}
+
+class PasswordSubmitRegexValidator extends RegexValidator {
+  PasswordSubmitRegexValidator()
+      : super(
+          regexSource:
+              r'^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*();:,."-_/#?&])[A-Za-z\d@$!%*();:,."-_/#?&]{8,}$',
+        );
+}
+
+class NonEmptyStringValidator extends StringValidator {
+  @override
+  bool isValid(String value) {
+    return value.isNotEmpty;
+  }
+}
+
+class MinLengthStringValidator extends StringValidator {
+  MinLengthStringValidator(this.minLength);
+  final int minLength;
+
+  @override
+  bool isValid(String value) {
+    return value.length >= minLength;
+  }
+}
