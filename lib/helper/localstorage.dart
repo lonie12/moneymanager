@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:moneymanager/app/models/category.dart';
 import 'package:moneymanager/app/models/expense.dart';
-import 'package:moneymanager/app/models/wallet.dart';
+import 'package:moneymanager/app/models/wallet.model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // Local database configuration
@@ -12,7 +12,7 @@ class LocalStorage {
   static init() async {
     // Initialisation
     storage = await SharedPreferences.getInstance();
-    // storage.clear();
+    storage.clear();
   }
 
   // Local data

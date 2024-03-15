@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:moneymanager/app/controllers/expense_provider.dart';
+import 'package:moneymanager/app/viewmodels/expense.viewmodel.dart';
 import 'package:moneymanager/app/views/home/simmer.dart';
 import 'package:moneymanager/helper/constants.dart';
-import 'package:moneymanager/widgets/wallet.dart';
+import 'package:moneymanager/widgets/wallet.widget.dart';
 
-class HomeWallets extends ConsumerWidget {
+class HomeWallets extends ConsumerStatefulWidget {
   const HomeWallets({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<HomeWallets> createState() => _HomeWalletsState();
+}
+
+class _HomeWalletsState extends ConsumerState<HomeWallets> {
+  @override
+  Widget build(BuildContext context) {
     final wallets = ref.watch(allWalletProvider);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 15),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: const Color.fromARGB(255, 163, 163, 163),
         borderRadius: BorderRadius.circular(8),
         border: Border.all(width: 0.5, color: Colors.grey.shade300),
       ),
@@ -43,6 +48,8 @@ class HomeWallets extends ConsumerWidget {
             );
           },
           error: (e, st) {
+            print(e);
+            print(st);
             return List.generate(3, (index) {
               return const ItemShimmer();
             });

@@ -7,6 +7,10 @@ environment:
   sdk: '>=3.1.5 <4.0.0'
 
 dependencies:
+  dio: ^5.4.1
+  hive: ^2.2.3
+  retrofit: ^4.1.0
+  path_provider: ^2.1.0
   fluttertoast: ^8.2.4
   syncfusion_flutter_charts: ^24.2.8
   flutter_svg: ^2.0.10+1
@@ -32,6 +36,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+  retrofit_generator: ^8.1.0
   change_app_package_name: ^1.1.0
   flutter_launcher_icons: ^0.13.1
   riverpod_generator: ^2.4.0

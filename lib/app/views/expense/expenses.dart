@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:moneymanager/app/controllers/expense_provider.dart';
+import 'package:moneymanager/app/viewmodels/expense.viewmodel.dart';
 import 'package:moneymanager/app/views/expense/add_epense_category.dart';
 import 'package:moneymanager/app/views/expense/add_expense.dart';
 import 'package:moneymanager/app/views/home/simmer.dart';
@@ -57,7 +57,6 @@ class Expenses extends ConsumerWidget {
                       );
                     },
                     error: (e, st) {
-                      print(e);
                       return List.generate(3, (index) {
                         return const ItemShimmer();
                       });

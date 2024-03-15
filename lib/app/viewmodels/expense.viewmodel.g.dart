@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'expense_provider.dart';
+part of 'expense.viewmodel.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -48,53 +48,5 @@ final allCategoryProvider = AutoDisposeFutureProvider<List<Category>?>.internal(
 );
 
 typedef AllCategoryRef = AutoDisposeFutureProviderRef<List<Category>?>;
-String _$selectedCategoryHash() => r'd79f42e153f18bb935f2e6299a2ca1ed87286731';
-
-/// See also [SelectedCategory].
-@ProviderFor(SelectedCategory)
-final selectedCategoryProvider =
-    AutoDisposeNotifierProvider<SelectedCategory, Category>.internal(
-  SelectedCategory.new,
-  name: r'selectedCategoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$selectedCategoryHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$SelectedCategory = AutoDisposeNotifier<Category>;
-String _$selectedWalletHash() => r'a8717e96f0c3e00b37b5f45701bc9187baba3edf';
-
-/// See also [SelectedWallet].
-@ProviderFor(SelectedWallet)
-final selectedWalletProvider =
-    AutoDisposeNotifierProvider<SelectedWallet, Wallet>.internal(
-  SelectedWallet.new,
-  name: r'selectedWalletProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$selectedWalletHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$SelectedWallet = AutoDisposeNotifier<Wallet>;
-String _$selectedExpenseHash() => r'3024763e6232dde0ae7f908526494696307545bd';
-
-/// See also [SelectedExpense].
-@ProviderFor(SelectedExpense)
-final selectedExpenseProvider =
-    AutoDisposeNotifierProvider<SelectedExpense, Expense>.internal(
-  SelectedExpense.new,
-  name: r'selectedExpenseProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$selectedExpenseHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$SelectedExpense = AutoDisposeNotifier<Expense>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

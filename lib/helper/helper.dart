@@ -40,7 +40,7 @@ class Helper {
   static const Color secondaryColor5LightTheme = Color(0xFFF8F8F8);
 
   // Links and Texts
-  static String apiUrl =
+  static const String apiUrl =
       "https://my-json-server.typicode.com/woelabs/money_manager_api";
   static String imagesUrl = "assets/images/";
   static String exitwarning = "Appuyer encore une fois pour quitter";
@@ -56,11 +56,11 @@ class Helper {
   // Other icons
   static String visibility = "${imagesUrl}visibility.svg";
   static String stats = "${imagesUrl}stats.svg";
-  static String bank = "${imagesUrl}bank.svg";
-  static String wallet = "${imagesUrl}wallet.svg";
-  static String wallet1 = "${imagesUrl}wallet1.svg";
-  static String user = "${imagesUrl}user.svg";
-  static String hand = "${imagesUrl}hand.svg";
+  static const String bank = "assets/images/bank.svg";
+  static const String wallet = "assets/images/wallet.svg";
+  static const String wallet1 = "assets/images/wallet1.svg";
+  static const String user = "assets/images/user.svg";
+  static const String hand = "assets/images/hand.svg";
 
   // Images
   // static String logo = "${imagesUrl}applogo.png";

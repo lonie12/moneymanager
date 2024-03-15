@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'wallet.dart';
+part of 'wallet.model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,20 +14,21 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-Wallet _$WalletFromJson(Map<String, dynamic> json) {
-  return _Wallet.fromJson(json);
-}
-
 /// @nodoc
 mixin _$Wallet {
+  @HiveField(0)
   int get id => throw _privateConstructorUsedError;
-  String get value => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get name => throw _privateConstructorUsedError;
+  @HiveField(2)
+  String get value => throw _privateConstructorUsedError;
+  @HiveField(3)
   double get balance => throw _privateConstructorUsedError;
+  @HiveField(4)
   String get currency => throw _privateConstructorUsedError;
+  @HiveField(5)
   String get description => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $WalletCopyWith<Wallet> get copyWith => throw _privateConstructorUsedError;
 }
@@ -38,12 +39,12 @@ abstract class $WalletCopyWith<$Res> {
       _$WalletCopyWithImpl<$Res, Wallet>;
   @useResult
   $Res call(
-      {int id,
-      String value,
-      String name,
-      double balance,
-      String currency,
-      String description});
+      {@HiveField(0) int id,
+      @HiveField(1) String name,
+      @HiveField(2) String value,
+      @HiveField(3) double balance,
+      @HiveField(4) String currency,
+      @HiveField(5) String description});
 }
 
 /// @nodoc
@@ -60,8 +61,8 @@ class _$WalletCopyWithImpl<$Res, $Val extends Wallet>
   @override
   $Res call({
     Object? id = null,
-    Object? value = null,
     Object? name = null,
+    Object? value = null,
     Object? balance = null,
     Object? currency = null,
     Object? description = null,
@@ -71,13 +72,13 @@ class _$WalletCopyWithImpl<$Res, $Val extends Wallet>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      value: null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
               as String,
       balance: null == balance
           ? _value.balance
@@ -103,12 +104,12 @@ abstract class _$$WalletImplCopyWith<$Res> implements $WalletCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int id,
-      String value,
-      String name,
-      double balance,
-      String currency,
-      String description});
+      {@HiveField(0) int id,
+      @HiveField(1) String name,
+      @HiveField(2) String value,
+      @HiveField(3) double balance,
+      @HiveField(4) String currency,
+      @HiveField(5) String description});
 }
 
 /// @nodoc
@@ -123,8 +124,8 @@ class __$$WalletImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? value = null,
     Object? name = null,
+    Object? value = null,
     Object? balance = null,
     Object? currency = null,
     Object? description = null,
@@ -134,13 +135,13 @@ class __$$WalletImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      value: null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
               as String,
       balance: null == balance
           ? _value.balance
@@ -159,35 +160,40 @@ class __$$WalletImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$WalletImpl implements _Wallet {
-  const _$WalletImpl(
-      {required this.id,
-      required this.value,
-      required this.name,
-      required this.balance,
-      required this.currency,
-      required this.description});
 
-  factory _$WalletImpl.fromJson(Map<String, dynamic> json) =>
-      _$$WalletImplFromJson(json);
+@HiveType(typeId: 0)
+class _$WalletImpl extends _Wallet {
+  _$WalletImpl(
+      {@HiveField(0) required this.id,
+      @HiveField(1) required this.name,
+      @HiveField(2) required this.value,
+      @HiveField(3) required this.balance,
+      @HiveField(4) required this.currency,
+      @HiveField(5) required this.description})
+      : super._();
 
   @override
+  @HiveField(0)
   final int id;
   @override
-  final String value;
-  @override
+  @HiveField(1)
   final String name;
   @override
+  @HiveField(2)
+  final String value;
+  @override
+  @HiveField(3)
   final double balance;
   @override
+  @HiveField(4)
   final String currency;
   @override
+  @HiveField(5)
   final String description;
 
   @override
   String toString() {
-    return 'Wallet(id: $id, value: $value, name: $name, balance: $balance, currency: $currency, description: $description)';
+    return 'Wallet(id: $id, name: $name, value: $value, balance: $balance, currency: $currency, description: $description)';
   }
 
   @override
@@ -196,8 +202,8 @@ class _$WalletImpl implements _Wallet {
         (other.runtimeType == runtimeType &&
             other is _$WalletImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.value, value) || other.value == value) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.value, value) || other.value == value) &&
             (identical(other.balance, balance) || other.balance == balance) &&
             (identical(other.currency, currency) ||
                 other.currency == currency) &&
@@ -205,47 +211,44 @@ class _$WalletImpl implements _Wallet {
                 other.description == description));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, value, name, balance, currency, description);
+      Object.hash(runtimeType, id, name, value, balance, currency, description);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$WalletImplCopyWith<_$WalletImpl> get copyWith =>
       __$$WalletImplCopyWithImpl<_$WalletImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$WalletImplToJson(
-      this,
-    );
-  }
 }
 
-abstract class _Wallet implements Wallet {
-  const factory _Wallet(
-      {required final int id,
-      required final String value,
-      required final String name,
-      required final double balance,
-      required final String currency,
-      required final String description}) = _$WalletImpl;
-
-  factory _Wallet.fromJson(Map<String, dynamic> json) = _$WalletImpl.fromJson;
+abstract class _Wallet extends Wallet {
+  factory _Wallet(
+      {@HiveField(0) required final int id,
+      @HiveField(1) required final String name,
+      @HiveField(2) required final String value,
+      @HiveField(3) required final double balance,
+      @HiveField(4) required final String currency,
+      @HiveField(5) required final String description}) = _$WalletImpl;
+  _Wallet._() : super._();
 
   @override
+  @HiveField(0)
   int get id;
   @override
-  String get value;
-  @override
+  @HiveField(1)
   String get name;
   @override
+  @HiveField(2)
+  String get value;
+  @override
+  @HiveField(3)
   double get balance;
   @override
+  @HiveField(4)
   String get currency;
   @override
+  @HiveField(5)
   String get description;
   @override
   @JsonKey(ignore: true)

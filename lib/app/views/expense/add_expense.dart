@@ -4,7 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:moneymanager/app/controllers/expense.dart';
 import 'package:moneymanager/app/models/category.dart';
-import 'package:moneymanager/app/models/wallet.dart';
+import 'package:moneymanager/app/models/wallet.model.dart';
 import 'package:moneymanager/app/views/expense/categories.dart';
 import 'package:moneymanager/app/views/wallet/wallets.dart';
 import 'package:moneymanager/helper/constants.dart';
@@ -13,7 +13,7 @@ import 'package:moneymanager/helper/utils.dart';
 import 'package:moneymanager/widgets/appbar.dart';
 import 'package:moneymanager/widgets/button.dart';
 import 'package:moneymanager/widgets/input.dart';
-import 'package:moneymanager/widgets/wallet.dart';
+import 'package:moneymanager/widgets/wallet.widget.dart';
 
 class AddExpense extends StatefulWidget {
   const AddExpense({super.key});

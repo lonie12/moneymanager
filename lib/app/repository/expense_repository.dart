@@ -1,27 +1,30 @@
+import 'package:dio/dio.dart';
 import 'package:moneymanager/app/api/modules/expense.dart';
-import 'package:moneymanager/app/api/modules/wallet.dart';
 import 'package:moneymanager/app/models/category.dart';
+import 'package:moneymanager/app/models/dto/wallet.dto.dart';
 import 'package:moneymanager/app/models/expense.dart';
-import 'package:moneymanager/app/models/wallet.dart';
+import 'package:moneymanager/app/models/wallet.model.dart';
+import 'package:moneymanager/app/services/wallet_service.dart';
+import 'package:moneymanager/helper/dio_provider.dart';
+import 'package:moneymanager/helper/hive_init.dart';
 import 'package:moneymanager/helper/localstorage.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'expense_repository.g.dart';
 
 class ExpenseRepository {
-  ExpenseRepository();
+  ExpenseRepository({required this.client});
+
+  final Dio client;
 
   // all wallets (local + remote)
   Future<List<Wallet>?> allWallet() async {
-    // Local Data
-    var aWallets = LocalStorage.getWallets();
-    // Remote data
-    var result = await WalletModule.allWallets();
-    if (result.isNotEmpty) {
-      var wts = List<Wallet>.from(result.map((value) {
-        return Wallet.fromJson(value);
-      })).toList();
-      return aWallets + wts;
+    final WalletService walletService = WalletService(client);
+    var localWallets = HiveLocal.getWallets();
+    final List<WalletDto> walletDtos = await walletService.getWallets();
+    if (walletDtos.isNotEmpty) {
+      var remotWallets = Wallet.fromDataObject(walletDtos);
+      return remotWallets + localWallets;
     }
     return null;
   }
@@ -49,7 +52,6 @@ class ExpenseRepository {
     // Remote data
     var result = await ExpenseModule.allExpense();
     if (result.isNotEmpty) {
-      print(result);
       var eps = List<Expense>.from(result.map((value) {
         return Expense.fromJson(value);
       })).toList();
@@ -138,5 +140,5 @@ class ExpenseRepository {
 
 @riverpod
 ExpenseRepository expenseRepository(ExpenseRepositoryRef ref) {
-  return ExpenseRepository();
+  return ExpenseRepository(client: ref.watch(dioProvider));
 }

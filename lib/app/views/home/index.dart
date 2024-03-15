@@ -38,7 +38,7 @@ class Home extends StatelessWidget {
               title: "Mahugnon",
               actions: InkWell(
                 onTap: () => Get.to(
-                  () => AddWallet(),
+                  () => const AddWallet(),
                   transition: Transition.downToUp,
                   duration: const Duration(milliseconds: 500),
                 ),

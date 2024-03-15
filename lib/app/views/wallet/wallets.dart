@@ -2,11 +2,11 @@ import 'package:carbon_icons/carbon_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:moneymanager/app/controllers/expense.dart';
-import 'package:moneymanager/app/models/wallet.dart';
+import 'package:moneymanager/app/models/wallet.model.dart';
 import 'package:moneymanager/helper/constants.dart';
 import 'package:moneymanager/helper/helper.dart';
 import 'package:moneymanager/widgets/appbar.dart';
-import 'package:moneymanager/widgets/wallet.dart';
+import 'package:moneymanager/widgets/wallet.widget.dart';
 
 class AllWallets extends StatefulWidget {
   const AllWallets({
@@ -86,8 +86,8 @@ class _AllWalletsState extends State<AllWallets> {
                                             controller.wallets.value![index];
                                         var wallet = Wallet(
                                           id: walletData.id,
-                                          value: walletData.value,
                                           name: walletData.name,
+                                          value: walletData.value,
                                           balance: walletData.balance,
                                           currency: walletData.currency,
                                           description: walletData.description,

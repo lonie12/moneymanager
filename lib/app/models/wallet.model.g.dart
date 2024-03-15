@@ -1,25 +1,24 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'wallet.dart';
+part of 'wallet.model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$WalletImpl _$$WalletImplFromJson(Map<String, dynamic> json) => _$WalletImpl(
+Wallet _$WalletFromJson(Map<String, dynamic> json) => Wallet(
       id: json['id'] as int,
-      value: json['value'] as String,
       name: json['name'] as String,
+      value: json['value'] as String,
       balance: (json['balance'] as num).toDouble(),
       currency: json['currency'] as String,
       description: json['description'] as String,
     );
 
-Map<String, dynamic> _$$WalletImplToJson(_$WalletImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$WalletToJson(Wallet instance) => <String, dynamic>{
       'id': instance.id,
-      'value': instance.value,
       'name': instance.name,
+      'value': instance.value,
       'balance': instance.balance,
       'currency': instance.currency,
       'description': instance.description,

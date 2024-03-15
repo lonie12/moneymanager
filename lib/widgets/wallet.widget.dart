@@ -73,7 +73,7 @@ class WalletItem extends StatelessWidget {
         const SizedBox(width: 30),
         Text(
           utilsThousandSeparator(
-            double.tryParse(abalance) ?? 0.0,
+            double.tryParse(abalance.toString()) ?? 0.0,
             appCurrencyWithValue(acurrency),
           ),
           style: Theme.of(context)

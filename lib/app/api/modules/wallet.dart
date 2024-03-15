@@ -1,13 +1,15 @@
 import 'package:moneymanager/app/api/api.dart';
-import 'package:moneymanager/app/models/wallet.dart';
+import 'package:moneymanager/app/models/dto/wallet.dto.dart';
+import 'package:moneymanager/app/models/wallet.model.dart';
+import 'package:moneymanager/helper/hive_init.dart';
 import 'package:moneymanager/helper/localstorage.dart';
 
 final client = ApiClient();
 
 class WalletModule {
   // add wallet api call method
-  static Future<bool> addWallet(Wallet wallet) async {
-    return await LocalStorage.addWallet(wallet);
+  static Future<bool> addWallet(WalletDto walletDto) async {
+    return await HiveLocal.addWallet(walletDto);
   }
 
   // wallet list

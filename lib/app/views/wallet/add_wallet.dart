@@ -3,32 +3,23 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:carbon_icons/carbon_icons.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:moneymanager/app/controllers/wallet_provider.dart';
+import 'package:moneymanager/app/repository/wallet.repository.dart';
+import 'package:moneymanager/app/viewmodels/wallet.viewmodel.dart';
 import 'package:moneymanager/helper/utils.dart';
-import 'package:moneymanager/widgets/wallet.dart';
+import 'package:moneymanager/widgets/wallet.widget.dart';
 import 'package:moneymanager/widgets/appbar.dart';
 import 'package:moneymanager/widgets/button.dart';
 import 'package:moneymanager/widgets/input.dart';
 import 'package:moneymanager/widgets/textarea.dart';
 import 'package:moneymanager/helper/constants.dart';
 import 'package:moneymanager/widgets/selectable.dart';
-import 'package:moneymanager/app/controllers/wallet.dart';
 
 class AddWallet extends ConsumerWidget {
-  AddWallet({super.key});
-
-  final controller = Get.put(WalletController());
+  const AddWallet({super.key});
 
   @override
   Widget build(context, ref) {
-    final accountName = ref.watch(walletAccountNameProvider);
-    final addToNetworth = ref.watch(addToNetWorthProvider);
-    final balance = ref.watch(walletAccountBalanceProvider);
-    final accountId = ref.watch(walletAccountIdProvider);
-    final accountIcon = ref.watch(walletAccountIconProvider);
-    final accountColor = ref.watch(walletAccountColorProvider);
-    final accountCurrency = ref.watch(walletAccountCurrencyProvider);
-    final accountType = ref.watch(walletAccountTypeProvider);
+    final walletController = ref.watch(walletControllerProvider);
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -77,11 +68,11 @@ class AddWallet extends ConsumerWidget {
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: WalletItem(
-                      icon: appIconWithValue(accountIcon),
-                      aid: accountId,
-                      aname: accountName,
-                      abalance: balance,
-                      acurrency: accountCurrency,
+                      icon: appIconWithValue(walletController.icon!),
+                      aid: walletController.value,
+                      aname: walletController.name,
+                      abalance: walletController.balance.toString(),
+                      acurrency: walletController.currency,
                     ),
                   )
                 ],
@@ -98,32 +89,33 @@ class AddWallet extends ConsumerWidget {
                       title: "",
                       onChange: (value) {
                         ref
-                            .read(walletAccountNameProvider.notifier)
-                            .update(value);
+                            .read(walletControllerProvider.notifier)
+                            .updateName(value);
                       },
                     ),
                     const SizedBox(height: 15),
                     Input(
-                        hintText: "Account number or ID",
-                        title: "",
-                        onChange: (value) {
-                          ref
-                              .read(walletAccountIdProvider.notifier)
-                              .update(value);
-                        }),
+                      hintText: "Account number or ID",
+                      title: "",
+                      onChange: (value) {
+                        ref
+                            .read(walletControllerProvider.notifier)
+                            .updateValue(value);
+                      },
+                    ),
                     const SizedBox(height: 15),
                     Input(
                       hintText: "Account balance",
                       title: "",
                       onChange: (value) {
-                        if (isNumeric(balance)) {
+                        if (isNumeric(walletController.balance.toString())) {
                           ref
-                              .read(walletAccountBalanceProvider.notifier)
-                              .update(value);
+                              .read(walletControllerProvider.notifier)
+                              .updateBalance(int.parse(value));
                         } else {
                           ref
-                              .read(walletAccountBalanceProvider.notifier)
-                              .update("0.0");
+                              .read(walletControllerProvider.notifier)
+                              .updateBalance(0);
                           Fluttertoast.showToast(
                             msg: "Montant saisie invalide",
                           );
@@ -138,11 +130,11 @@ class AddWallet extends ConsumerWidget {
                             values: appIcons,
                             title: "Icon",
                             type: "icon",
-                            value: accountIcon,
+                            value: walletController.icon!,
                             onChange: (value) {
                               ref
-                                  .read(walletAccountIconProvider.notifier)
-                                  .update(value);
+                                  .read(walletControllerProvider.notifier)
+                                  .updateIcon(value);
                             },
                           ),
                         ),
@@ -152,11 +144,11 @@ class AddWallet extends ConsumerWidget {
                             values: appColors,
                             title: "Color",
                             type: "colors",
-                            value: accountColor,
+                            value: walletController.color!,
                             onChange: (value) {
                               ref
-                                  .read(walletAccountColorProvider.notifier)
-                                  .update(value);
+                                  .read(walletControllerProvider.notifier)
+                                  .updateColor(value);
                             },
                           ),
                         ),
@@ -173,11 +165,11 @@ class AddWallet extends ConsumerWidget {
                       values: accountTypes,
                       title: "Account type",
                       type: "text",
-                      value: accountType,
+                      value: walletController.type!,
                       onChange: (value) {
                         ref
-                            .read(walletAccountTypeProvider.notifier)
-                            .update(value);
+                            .read(walletControllerProvider.notifier)
+                            .updateType(value);
                       },
                     ),
                     const SizedBox(height: 15),
@@ -185,11 +177,11 @@ class AddWallet extends ConsumerWidget {
                       values: appCurrencies,
                       title: "Account currency",
                       type: "text",
-                      value: accountCurrency,
+                      value: walletController.currency,
                       onChange: (value) {
                         ref
-                            .read(walletAccountCurrencyProvider.notifier)
-                            .update(value);
+                            .read(walletControllerProvider.notifier)
+                            .updateCurrency(value);
                       },
                     ),
                     const SizedBox(height: 20),
@@ -218,9 +210,11 @@ class AddWallet extends ConsumerWidget {
                                     fontSize: 15, fontWeight: FontWeight.w500),
                           ),
                           Switch(
-                            value: addToNetworth,
+                            value: walletController.addToNetWorth!,
                             onChanged: (value) {
-                              ref.read(addToNetWorthProvider.notifier).update(
+                              ref
+                                  .read(walletControllerProvider.notifier)
+                                  .updateAddToNetWorth(
                                     value,
                                   );
                             },
@@ -237,7 +231,9 @@ class AddWallet extends ConsumerWidget {
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
               child: Button(
                 title: "Create",
-                onClick: () => controller.addWallet(),
+                onClick: () => ref
+                    .read(walletRepositoryProvider)
+                    .addWallet(walletController),
               ),
             )
           ],

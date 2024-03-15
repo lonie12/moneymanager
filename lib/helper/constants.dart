@@ -1,6 +1,6 @@
 import 'package:moneymanager/helper/helper.dart';
 
-List walletIcons = [
+const List walletIcons = [
   Helper.bank,
   Helper.wallet1,
   Helper.wallet,

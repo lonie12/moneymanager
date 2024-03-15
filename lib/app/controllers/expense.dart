@@ -7,7 +7,7 @@ import 'package:moneymanager/app/api/modules/expense.dart';
 import 'package:moneymanager/app/api/modules/wallet.dart';
 import 'package:moneymanager/app/models/category.dart';
 import 'package:moneymanager/app/models/expense.dart';
-import 'package:moneymanager/app/models/wallet.dart';
+import 'package:moneymanager/app/models/wallet.model.dart';
 import 'package:moneymanager/helper/constants.dart';
 import 'package:moneymanager/helper/localstorage.dart';
 import 'package:moneymanager/helper/utils.dart';
