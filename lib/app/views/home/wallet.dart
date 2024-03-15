@@ -19,7 +19,7 @@ class _HomeWalletsState extends ConsumerState<HomeWallets> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 15),
       decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 163, 163, 163),
+        color: Colors.white,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(width: 0.5, color: Colors.grey.shade300),
       ),

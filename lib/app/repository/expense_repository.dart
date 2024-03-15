@@ -4,9 +4,9 @@ import 'package:moneymanager/app/models/category.dart';
 import 'package:moneymanager/app/models/dto/wallet.dto.dart';
 import 'package:moneymanager/app/models/expense.dart';
 import 'package:moneymanager/app/models/wallet.model.dart';
+import 'package:moneymanager/app/services/wallet_post_method.service.dart';
 import 'package:moneymanager/app/services/wallet_service.dart';
 import 'package:moneymanager/helper/dio_provider.dart';
-import 'package:moneymanager/helper/hive_init.dart';
 import 'package:moneymanager/helper/localstorage.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -20,7 +20,7 @@ class ExpenseRepository {
   // all wallets (local + remote)
   Future<List<Wallet>?> allWallet() async {
     final WalletService walletService = WalletService(client);
-    var localWallets = HiveLocal.getWallets();
+    var localWallets = WalletPostMethod.getWallets();
     final List<WalletDto> walletDtos = await walletService.getWallets();
     if (walletDtos.isNotEmpty) {
       var remotWallets = Wallet.fromDataObject(walletDtos);
